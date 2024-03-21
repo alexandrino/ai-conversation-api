@@ -76,6 +76,7 @@ npm run lint
 
 ### Tech Debts:
 
+- Use winston lib to write logs
 - Write unit and integration tests
 - Create a Docker file to run the app inside a container
 - Create a docker-compose file to run all services
