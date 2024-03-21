@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:5.0.2
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user1
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    ports:
+      - 27017:27017
+    volumes:
+      - db:/data/db
+  app:
+    depends_on:
+      - mongodb
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 3001:3001
+    environment:
+      - DB_HOST=mongodb
+      - DB_USER=user1
+      - DB_PASSWORD=123456
+      - DB_NAME=db1
+      - DB_PORT=27017
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:
