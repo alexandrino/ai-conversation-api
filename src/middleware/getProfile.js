@@ -1,4 +1,10 @@
 const getProfile = async (req, res, next) => {
+  // #swagger.parameters['profile_id'] = {
+  //   in: 'header',
+  //   required: true,
+  //   type: 'string',
+  //   description: 'The profile ID of the user.'
+  // }
   const profileId = Number(req.get("profile_id"));
 
   if (!profileId) {
